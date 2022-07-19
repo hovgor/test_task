@@ -8,19 +8,21 @@ import { UserValidator } from 'src/validaters/UserValidator';
 import { UsersController } from './users.controller';
 import UserEntity from './users.pg.entity';
 import { UsersService } from './users.service';
+import UsersSocketController from './users.socket.controller';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
     forwardRef(() => AuthModule),
   ],
-  controllers: [UsersController],
+  controllers: [UsersController, UsersSocketController],
   providers: [
     UsersService,
     HashPassword,
     UserValidator,
     AuthService,
     JwtService,
+    UsersSocketController,
   ],
 })
 export class UsersModule {}

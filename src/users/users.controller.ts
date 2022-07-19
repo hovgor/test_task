@@ -29,6 +29,7 @@ import { UserLoginDto } from './dto/userLoginDto';
 import { UserRegisterDto } from './dto/userRegisterDto';
 import UserEntityBase from './users.entity';
 import { UsersService } from './users.service';
+import UsersSocketController from './users.socket.controller';
 
 @Controller('users')
 @ApiTags('Users')
@@ -38,6 +39,7 @@ export class UsersController {
     private readonly passwordHash: HashPassword,
     private readonly userValidator: UserValidator,
     private readonly authService: AuthService,
+    private ws: UsersSocketController,
   ) {}
 
   @UsePipes(new ValidationPipe())
